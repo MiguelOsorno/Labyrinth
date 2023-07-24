@@ -11,3 +11,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.labyrinth {
+  height: 800px;
+  width: 800px;
+  background-color: #41B883;
+}
+
+.line { 
+  display: flex;
+  flex-direction: row;
+}
+
+.space {
+  width: 66px;
+  height: 66px;
+  background-color: #34495E;
+  border: 1px solid #41B883;
+}
