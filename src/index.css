@@ -24,8 +24,31 @@ code {
 }
 
 .space {
+  cursor: pointer;
   width: 66px;
   height: 66px;
-  background-color: #34495E;
-  border: 1px solid #41B883;
+  background-color: #6d3c11;
+  border: 1px solid #252525;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+}
+.figure {
+  font-size: 55px;
+  display: flex;
+}
+.figure--middle {
+  font-size: 25px;
+}
+.figure::before {
+  align-self: center;
+}
+.figure--person {
+  color: #e5d62e;
+}
+.figure--wall {
+  color: #623307;
+}
+.figure--tree {
+  color: #17a655;
 }
