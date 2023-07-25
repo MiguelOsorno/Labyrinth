@@ -1,25 +1,25 @@
 import { useCallback, useState } from "react";
 
 import { Space } from "./components/space/Space";
-import { Figure, FigureType } from "./interfaces";
+import { Figure, FigureType, Position } from "./interfaces";
 import { Delay } from "./utils/delay";
 
 
 function App() {
 
   const [figures, setFigura] = useState<Figure[][]>([
-    [{ type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }],
-    [{ type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }],
-    [{ type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }],
-    [{ type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }],
-    [{ type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }],
-    [{ type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }],
-    [{ type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }],
-    [{ type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }],
-    [{ type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }],
-    [{ type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }],
-    [{ type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }],
-    [{ type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }, { type: 'TREE' }],
+    [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
+    [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
+    [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
+    [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
+    [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
+    [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
+    [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
+    [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
+    [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
+    [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
+    [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
+    [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT'}],
   ])
 
   const [start, setStart] = useState<{ file: number; column: number } | undefined>()
@@ -96,12 +96,13 @@ function App() {
     setFigura(prev => prev.map((file, fileIndex) => file.map((col, colIndex) => fileIndex === fileFigure && colIndex === columnFigure ? { ...col, type: newFigure } : col)))
   }, [figures, pointIsLimits, start, finish])
 
-  const recorridoLaberinto = useCallback(async (laberinto: Figure[][], posicionActual: { y: number; x: number }): Promise<'SHOE' | 'X'> => {
+  const recorridoLaberinto = useCallback(async (laberinto: Figure[][], posicionActual: { y: number; x: number }, position: Position): Promise<'SHOE' | 'X'> => {
     const { x, y } = posicionActual;
 
     if (laberinto[y] && laberinto[y][x]) {
       laberinto[y][x].type = 'PERSON'
-      setFigura(laberinto.map(file => file.map(col => ({...col})) ))
+      laberinto[y][x].position = position
+      setFigura(laberinto.map(file => file.map(col => ({ ...col }))))
     }
 
     await Delay()
@@ -109,67 +110,111 @@ function App() {
     if (laberinto[y + 1] && laberinto[y + 1][x] && laberinto[y + 1][x].type === 'ROAD') {
       // se puede avanzar hacia abajo
       laberinto[y][x].type = 'SHOE'
-      setFigura(laberinto.map(file => file.map(col => ({...col})) ))
-      let marca = await recorridoLaberinto(laberinto, { x: x, y: y + 1 })
-      if(marca === 'X'){
+
+      if (laberinto[y][x].position.includes('RIGHT')) {
+        laberinto[y][x].position = 'RIGHT-BOTTOM'
+      } else {
+        laberinto[y][x].position = 'LEFT-BOTTOM'
+      }
+
+      setFigura(laberinto.map(file => file.map(col => ({ ...col }))))
+      let marca = await recorridoLaberinto(laberinto, { x: x, y: y + 1 }, 'BOTTOM')
+
+      if (marca === 'X') {
         laberinto[y][x].type = 'PERSON'
-        setFigura(laberinto.map(file => file.map(col => ({...col})) ))
+
+        if(laberinto[y][x].position.includes('RIGHT')){
+          laberinto[y][x].position = 'LEFT-TOP'
+        }else {
+          laberinto[y][x].position = 'RIGHT-TOP'
+        }
+
+        setFigura(laberinto.map(file => file.map(col => ({ ...col }))))
         await Delay()
       }
+
       laberinto[y][x].type = marca
-      setFigura(laberinto.map(file => file.map(col => ({...col})) ))
+      setFigura(laberinto.map(file => file.map(col => ({ ...col }))))
       if (marca === 'SHOE') return marca
     }
 
     if (laberinto[y] && laberinto[y][x + 1] && laberinto[y][x + 1].type === 'ROAD') {
       // se puede avanzar hacia la derecha
       laberinto[y][x].type = 'SHOE'
-      setFigura(laberinto.map(file => file.map(col => ({...col})) ))
-      let marca = await recorridoLaberinto(laberinto, { x: x + 1, y: y })
-      if(marca === 'X'){
+
+      laberinto[y][x].position = 'RIGHT'
+
+      setFigura(laberinto.map(file => file.map(col => ({ ...col }))))
+      let marca = await recorridoLaberinto(laberinto, { x: x + 1, y: y }, 'RIGHT')
+
+      if (marca === 'X') {
         laberinto[y][x].type = 'PERSON'
-        setFigura(laberinto.map(file => file.map(col => ({...col})) ))
+
+        laberinto[y][x].position = 'LEFT'
+ 
+        setFigura(laberinto.map(file => file.map(col => ({ ...col }))))
         await Delay()
       }
+
       laberinto[y][x].type = marca
-      setFigura(laberinto.map(file => file.map(col => ({...col})) ))
+      setFigura(laberinto.map(file => file.map(col => ({ ...col }))))
       if (marca === 'SHOE') return marca
     }
 
     if (laberinto[y] && laberinto[y][x - 1] && laberinto[y][x - 1].type === 'ROAD') {
       // se puede avanzar hacia la izquierda
       laberinto[y][x].type = 'SHOE'
-      setFigura(laberinto.map(file => file.map(col => ({...col})) ))
-      let marca = await recorridoLaberinto(laberinto, { x: x - 1, y: y })
-      if(marca === 'X'){
+
+      laberinto[y][x].position = 'LEFT'
+
+      setFigura(laberinto.map(file => file.map(col => ({ ...col }))))
+      let marca = await recorridoLaberinto(laberinto, { x: x - 1, y: y }, 'LEFT')
+      if (marca === 'X') {
         laberinto[y][x].type = 'PERSON'
-        setFigura(laberinto.map(file => file.map(col => ({...col})) ))
+        laberinto[y][x].position = 'RIGHT'
+
+        setFigura(laberinto.map(file => file.map(col => ({ ...col }))))
         await Delay()
       }
       laberinto[y][x].type = marca
-      setFigura(laberinto.map(file => file.map(col => ({...col})) ))
+      setFigura(laberinto.map(file => file.map(col => ({ ...col }))))
       if (marca === 'SHOE') return marca
     }
 
     if (laberinto[y - 1] && laberinto[y - 1][x] && laberinto[y - 1][x].type === 'ROAD') {
       // se puede avanzar hacia arriba
       laberinto[y][x].type = 'SHOE'
-      setFigura(laberinto.map(file => file.map(col => ({...col})) ))
-      let marca = await recorridoLaberinto(laberinto, { x: x, y: y - 1 })
-      if(marca === 'X'){
+
+      if (laberinto[y][x].position.includes('RIGHT')) {
+        laberinto[y][x].position = 'LEFT-TOP'
+      } else {
+        laberinto[y][x].position = 'RIGHT-TOP'
+      }
+
+      setFigura(laberinto.map(file => file.map(col => ({ ...col }))))
+      let marca = await recorridoLaberinto(laberinto, { x: x, y: y - 1 }, 'TOP')
+      if (marca === 'X') {
+
         laberinto[y][x].type = 'PERSON'
-        setFigura(laberinto.map(file => file.map(col => ({...col})) ))
+
+        if (laberinto[y][x].position.includes('RIGHT')) {
+          laberinto[y][x].position = 'RIGHT-BOTTOM'
+        } else {
+          laberinto[y][x].position = 'LEFT-BOTTOM'
+        }
+
+        setFigura(laberinto.map(file => file.map(col => ({ ...col }))))
         await Delay()
       }
       laberinto[y][x].type = marca
-      setFigura(laberinto.map(file => file.map(col => ({...col})) ))
+      setFigura(laberinto.map(file => file.map(col => ({ ...col }))))
       if (marca === 'SHOE') return marca
     }
 
     if ((y === 0 || y === laberinto.length - 1) || (x === 0 || x === laberinto[0].length - 1)) {
-      if(laberinto[y][x]){
+      if (laberinto[y][x]) {
         laberinto[y][x].type = 'SHOE'
-        setFigura(laberinto.map(file => file.map(col => ({...col})) ))
+        setFigura(laberinto.map(file => file.map(col => ({ ...col }))))
       }
 
       return 'SHOE'
@@ -177,7 +222,7 @@ function App() {
 
     if (laberinto[y] && laberinto[y][x]) {
       laberinto[y][x].type = 'X'
-      setFigura(laberinto.map(file => file.map(col => ({...col})) ))
+      setFigura(laberinto.map(file => file.map(col => ({ ...col }))))
     }
 
     return 'X'
@@ -189,7 +234,15 @@ function App() {
         <button disabled={!start || isPlaying} onClick={() => {
           if (!start) return
           setIsPlaying(true)
-          recorridoLaberinto(figures.map(file => file.map(col => ({ ...col }))), { y: start.file, x: start.column })
+          recorridoLaberinto(figures.map(file => file.map(col => ({ ...col }))), { y: start.file, x: start.column },
+            start.file === 0
+              ? 'RIGHT-BOTTOM'
+              : start.file === figures.length - 1
+                ? 'RIGHT-TOP'
+                : start.column === figures[0].length - 1
+                  ? 'LEFT'
+                  : 'RIGHT'
+          )
         }} className={`button ${!start ? 'cursor-disable ' : ''}`}>
           Empezar
         </button>
@@ -201,6 +254,7 @@ function App() {
               <div className="line" key={fileIndex} >
                 {file.map((figure, index) => (
                   <Space
+                    position={figure.position}
                     key={`${fileIndex}-${index}`}
                     changeFigure={() => !isPlaying ? changeFigure({
                       columnFigure: index,
