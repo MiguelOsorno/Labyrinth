@@ -12,12 +12,15 @@ code {
     monospace;
 }
 
+.container {
+  display: flex;
+  flex-direction: row;
+}
 .labyrinth {
   height: 800px;
   width: 800px;
   background-color: #41B883;
 }
-
 .line { 
   display: flex;
   flex-direction: row;
@@ -38,17 +41,33 @@ code {
   display: flex;
 }
 .figure--middle {
+  font-size: 40px;
+}
+.figure--small {
   font-size: 25px;
 }
 .figure::before {
   align-self: center;
 }
-.figure--person {
+.figure--color-yellow {
   color: #e5d62e;
 }
-.figure--wall {
+.figure--color-grey {
   color: #623307;
 }
-.figure--tree {
+.figure--color-green {
   color: #17a655;
+}
+.button {
+  background-color: #41B883;
+  color: white;
+  padding: 10px;
+  width: 140px;
+  height: 50px;
+  border: 1px solid #41B883;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.cursor-disable {
+  cursor: not-allowed;
 }

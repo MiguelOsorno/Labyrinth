@@ -1,5 +1,5 @@
 
-export type FigureType = 'TREE' | 'ROAD' | 'PERSON'
+export type FigureType = 'TREE' | 'ROAD' | 'SHOE' | 'X' | 'PERSON'
 
 export interface Figure {
     type: FigureType;
