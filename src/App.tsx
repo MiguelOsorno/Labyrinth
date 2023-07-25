@@ -16,7 +16,7 @@ const initialState: Figure[][] = [
   [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
   [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
   [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
-  [{ type: 'ALERT', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'ALERT', position: 'RIGHT'}],
+  [{ type: 'ALERT', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'ALERT', position: 'RIGHT' }],
 ]
 
 function App() {
@@ -28,17 +28,17 @@ function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [gameUsed, setGameUsed] = useState(false)
 
-  const pointIsInCorner = useCallback(({y, x }: {y: number, x: number}) => {
-    return ((y === 0 && x === 0) || (y === 0 && x === maze[0].length - 1) || (y === maze.length - 1 && x ===0) || (y === maze.length - 1 && x === maze[0].length - 1))
+  const pointIsInCorner = useCallback(({ y, x }: { y: number, x: number }) => {
+    return ((y === 0 && x === 0) || (y === 0 && x === maze[0].length - 1) || (y === maze.length - 1 && x === 0) || (y === maze.length - 1 && x === maze[0].length - 1))
   }, [maze])
 
   const pointIsLimits = useCallback((file: number, column: number) => {
     return (file === 0 || file === maze.length - 1) || (column === 0 || column === maze[0].length - 1)
   }, [maze])
 
-  const changeFigure = useCallback(({ y,  x, newFigure }: { y: number; x: number; newFigure: FigureType }) => {
+  const changeFigure = useCallback(({ y, x, newFigure }: { y: number; x: number; newFigure: FigureType }) => {
 
-    if(pointIsInCorner({x, y})) return;
+    if (pointIsInCorner({ x, y })) return;
 
     if (
       // derecha
@@ -101,7 +101,7 @@ function App() {
       }
     }
 
-    setMaze(prev => prev.map((row, rowIndex ) => row.map((col, colIndex) => rowIndex === y && colIndex === x ? { ...col, type: newFigure } : col)))
+    setMaze(prev => prev.map((row, rowIndex) => row.map((col, colIndex) => rowIndex === y && colIndex === x ? { ...col, type: newFigure } : col)))
   }, [maze, pointIsLimits, start, finish, pointIsInCorner])
 
   const walkMaze = useCallback(async (maze: Figure[][], posicionActual: { y: number; x: number }, position: Position): Promise<'SHOE' | 'X'> => {
@@ -131,9 +131,9 @@ function App() {
       if (marca === 'X') {
         maze[y][x].type = 'PERSON'
 
-        if(maze[y][x].position.includes('RIGHT')){
+        if (maze[y][x].position.includes('RIGHT')) {
           maze[y][x].position = 'LEFT-TOP'
-        }else {
+        } else {
           maze[y][x].position = 'RIGHT-TOP'
         }
 
@@ -159,7 +159,7 @@ function App() {
         maze[y][x].type = 'PERSON'
 
         maze[y][x].position = 'LEFT'
- 
+
         setMaze(maze.map(row => row.map(col => ({ ...col }))))
         await Delay()
       }
@@ -237,53 +237,59 @@ function App() {
   }, [])
 
   return (
-    <div className="container">
+    <div className="container container-colum">
       <div>
-        <button disabled={!start || isPlaying || gameUsed} onClick={async() => {
-          if (!start) return
-          setGameUsed(true)
-          setIsPlaying(true)
-          await walkMaze(maze.map(row => row.map(col => ({ ...col }))), { y: start.y, x: start.x },
-            start.y === 0
-              ? 'RIGHT-BOTTOM'
-              : start.y === maze.length - 1
-                ? 'RIGHT-TOP'
-                : start.x === maze[0].length - 1
-                  ? 'LEFT'
-                  : 'RIGHT'
-          )
-          setIsPlaying(false)
-        }} className={`button ${!start || isPlaying || gameUsed ? 'cursor-disable ' : ''}`}>
-          Start
-        </button>
-        <button disabled={isPlaying} className={`button ${isPlaying ? 'cursor-disable': ''}` } onClick={() => {
-          setMaze(initialState)
-          setFinish(undefined)
-          setStart(undefined)
-          setGameUsed(false)
-
-        }} >Reset</button>
+        <h1 className="title">Made a maze and we will find the route for you!!</h1>
+        <div className="container">
+          <div className="controls">
+            <button disabled={!start || isPlaying || gameUsed} onClick={async () => {
+              if (!start) return
+              setGameUsed(true)
+              setIsPlaying(true)
+              await walkMaze(maze.map(row => row.map(col => ({ ...col }))), { y: start.y, x: start.x },
+                start.y === 0
+                  ? 'RIGHT-BOTTOM'
+                  : start.y === maze.length - 1
+                    ? 'RIGHT-TOP'
+                    : start.x === maze[0].length - 1
+                      ? 'LEFT'
+                      : 'RIGHT'
+              )
+              setIsPlaying(false)
+            }} className={`button color-blue ${!start || isPlaying || gameUsed ? 'cursor-disable ' : ''}`}>
+              Start
+            </button>
+            <button disabled={isPlaying} className={`button color-red-two ${isPlaying ? 'cursor-disable' : ''}`} onClick={() => {
+              setMaze(initialState)
+              setFinish(undefined)
+              setStart(undefined)
+              setGameUsed(false)
+            }} >Reset</button>
+          </div>
+        </div>
       </div>
-      <div className="labyrinth">
-        {
-          maze.map((row, rowIndex) => {
-            return (
-              <div className="line" key={rowIndex} >
-                {row.map((figure, columIndex) => (
-                  <Space
-                    position={figure.position}
-                    key={`${rowIndex}-${columIndex}}`}
-                    changeFigure={() => !isPlaying ? changeFigure({
-                      x: columIndex,
-                      y: rowIndex,
-                      newFigure: figure.type === 'TREE' ? 'ROAD' : 'TREE'
-                    }) : () => { return }}
-                    type={figure.type} />
-                ))}
-              </div>
-            )
-          })
-        }
+      <div className="container">
+        <div className="labyrinth margin-top-10">
+          {
+            maze.map((row, rowIndex) => {
+              return (
+                <div className="line" key={rowIndex} >
+                  {row.map((figure, columIndex) => (
+                    <Space
+                      position={figure.position}
+                      key={`${rowIndex}-${columIndex}}`}
+                      changeFigure={() => !isPlaying ? changeFigure({
+                        x: columIndex,
+                        y: rowIndex,
+                        newFigure: figure.type === 'TREE' ? 'ROAD' : 'TREE'
+                      }) : () => { return }}
+                      type={figure.type} />
+                  ))}
+                </div>
+              )
+            })
+          }
+        </div>
       </div>
     </div>
   );
