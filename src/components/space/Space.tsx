@@ -10,10 +10,10 @@ interface Props  {
 export const Space = ({ type, changeFigure, position}: Props) => {
 
   const icon = useCallback(() => {
-    let text = <></>
+    let component = <></>
     switch (type) {
       case 'SHOE':
-        text = <i className={`fas fa-shoe-prints figure figure--color-yellow figure--small 
+        component = <i className={`fas fa-shoe-prints figure figure--color-white figure--small 
         ${
           position === 'LEFT' 
             ? 'fa-rotate-180'
@@ -25,16 +25,16 @@ export const Space = ({ type, changeFigure, position}: Props) => {
         }`}></i>
         break;
       case 'ROAD':
-        text =  <i className="fas fa-circle figure figure--small"></i>
+        component =  <i className="fas fa-circle figure figure--small"></i>
         break;
       case 'TREE':
-        text = <i className="fas fa-tree figure figure--color-green"></i>
+        component = <i className="fas fa-tree figure figure--color-green"></i>
         break;
       case 'X':
-        text = <i className="fas fa-times figure figure-color-red"></i>
+        component = <i className="fas fa-times figure figure-color-red"></i>
         break
       case 'PERSON':
-        text = <i className={`fas fa-walking figure figure--color-yellow figure--middle ${
+        component = <i className={`fas fa-walking figure figure--color-white figure--middle ${
           position === 'RIGHT'
           ? ''
           : position === 'LEFT'
@@ -52,11 +52,14 @@ export const Space = ({ type, changeFigure, position}: Props) => {
                 : 'fa-rotate-90'
         }`}></i>
         break
+      case 'ALERT':
+        component = <i className="fas fa-exclamation-triangle figure figure--small figure--color-yellow"></i>
+        break;
       default:
         break;
     }
 
-    return text
+    return component
   }, [type, position])
 
   return (

@@ -5,6 +5,7 @@ import { Figure, FigureType, Position } from "./interfaces";
 import { Delay } from "./utils/delay";
 
 const initialState: Figure[][] = [
+  [{ type: 'ALERT', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'ALERT', position: 'RIGHT' }],
   [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
   [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
   [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
@@ -15,77 +16,82 @@ const initialState: Figure[][] = [
   [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
   [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
   [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
-  [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
-  [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT'}],
+  [{ type: 'ALERT', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'ALERT', position: 'RIGHT'}],
 ]
 
 function App() {
 
-  const [figures, setFigura] = useState<Figure[][]>(initialState)
+  const [maze, setMaze] = useState<Figure[][]>(initialState)
 
-  const [start, setStart] = useState<{ file: number; column: number } | undefined>()
-  const [finish, setFinish] = useState<{ file: number; column: number } | undefined>()
+  const [start, setStart] = useState<{ y: number; x: number } | undefined>()
+  const [finish, setFinish] = useState<{ y: number; x: number } | undefined>()
   const [isPlaying, setIsPlaying] = useState(false);
   const [gameUsed, setGameUsed] = useState(false)
 
+  const pointIsInCorner = useCallback(({y, x }: {y: number, x: number}) => {
+    return ((y === 0 && x === 0) || (y === 0 && x === maze[0].length - 1) || (y === maze.length - 1 && x ===0) || (y === maze.length - 1 && x === maze[0].length - 1))
+  }, [maze])
+
   const pointIsLimits = useCallback((file: number, column: number) => {
-    return (file === 0 || file === figures.length - 1) || (column === 0 || column === figures[0].length - 1)
-  }, [figures])
+    return (file === 0 || file === maze.length - 1) || (column === 0 || column === maze[0].length - 1)
+  }, [maze])
 
-  const changeFigure = useCallback(({ fileFigure, columnFigure, newFigure }: { fileFigure: number; columnFigure: number; newFigure: FigureType }) => {
+  const changeFigure = useCallback(({ y,  x, newFigure }: { y: number; x: number; newFigure: FigureType }) => {
+
+    if(pointIsInCorner({x, y})) return;
 
     if (
       // derecha
-      (figures[fileFigure] && figures[fileFigure][columnFigure + 1] && figures[fileFigure][columnFigure + 1].type === 'ROAD') &&
+      (maze[y] && maze[y][x + 1] && maze[y][x + 1].type === 'ROAD') &&
       // arriba derecha
-      (figures[fileFigure - 1] && figures[fileFigure - 1][columnFigure + 1] && figures[fileFigure - 1][columnFigure + 1].type === 'ROAD') &&
+      (maze[y - 1] && maze[y - 1][x + 1] && maze[y - 1][x + 1].type === 'ROAD') &&
       // arriba
-      (figures[fileFigure - 1] && figures[fileFigure - 1][columnFigure] && figures[fileFigure - 1][columnFigure].type === 'ROAD')
+      (maze[y - 1] && maze[y - 1][x] && maze[y - 1][x].type === 'ROAD')
     ) return
 
     if (
       // derecha
-      (figures[fileFigure] && figures[fileFigure][columnFigure + 1] && figures[fileFigure][columnFigure + 1].type === 'ROAD') &&
+      (maze[y] && maze[y][x + 1] && maze[y][x + 1].type === 'ROAD') &&
       // abajo derecha
-      (figures[fileFigure + 1] && figures[fileFigure + 1][columnFigure + 1] && figures[fileFigure + 1][columnFigure + 1].type === 'ROAD') &&
+      (maze[y + 1] && maze[y + 1][x + 1] && maze[y + 1][x + 1].type === 'ROAD') &&
       // abajo 
-      (figures[fileFigure + 1] && figures[fileFigure + 1][columnFigure] && figures[fileFigure + 1][columnFigure].type === 'ROAD')
+      (maze[y + 1] && maze[y + 1][x] && maze[y + 1][x].type === 'ROAD')
     ) return
 
     if (
       // arriba
-      (figures[fileFigure - 1] && figures[fileFigure - 1][columnFigure] && figures[fileFigure - 1][columnFigure].type === 'ROAD') &&
+      (maze[y - 1] && maze[y - 1][x] && maze[y - 1][x].type === 'ROAD') &&
       // arriba izquierda
-      (figures[fileFigure - 1] && figures[fileFigure - 1][columnFigure - 1] && figures[fileFigure - 1][columnFigure - 1].type === 'ROAD') &&
+      (maze[y - 1] && maze[y - 1][x - 1] && maze[y - 1][x - 1].type === 'ROAD') &&
       // izquierda
-      (figures[fileFigure] && figures[fileFigure][columnFigure - 1] && figures[fileFigure][columnFigure - 1].type === 'ROAD')
+      (maze[y] && maze[y][x - 1] && maze[y][x - 1].type === 'ROAD')
     ) return
 
     if (
       // izquierda
-      (figures[fileFigure] && figures[fileFigure][columnFigure - 1] && figures[fileFigure][columnFigure - 1].type === 'ROAD') &&
+      (maze[y] && maze[y][x - 1] && maze[y][x - 1].type === 'ROAD') &&
       // abajo izquierda
-      (figures[fileFigure + 1] && figures[fileFigure + 1][columnFigure - 1] && figures[fileFigure + 1][columnFigure - 1].type === 'ROAD') &&
+      (maze[y + 1] && maze[y + 1][x - 1] && maze[y + 1][x - 1].type === 'ROAD') &&
       // abajo
-      (figures[fileFigure + 1] && figures[fileFigure + 1][columnFigure] && figures[fileFigure + 1][columnFigure].type === 'ROAD')
+      (maze[y + 1] && maze[y + 1][x] && maze[y + 1][x].type === 'ROAD')
     ) return
 
-    if (pointIsLimits(fileFigure, columnFigure)) {
+    if (pointIsLimits(y, x)) {
       if (!start) {
-        setStart({ file: fileFigure, column: columnFigure })
-      } else if (!(start.file === fileFigure && start.column === columnFigure)) {
+        setStart({ y: y, x: x })
+      } else if (!(start.y === y && start.x === x)) {
         if (!finish) {
           if (
-            (start.file + 1 === fileFigure && columnFigure === start.column) ||
-            (start.file - 1 === fileFigure && columnFigure === start.column) ||
-            (start.file === fileFigure && start.column + 1 === columnFigure) ||
-            (start.file === fileFigure && start.column - 1 === columnFigure)
+            (start.y + 1 === y && x === start.x) ||
+            (start.y - 1 === y && x === start.x) ||
+            (start.y === y && start.x + 1 === x) ||
+            (start.y === y && start.x - 1 === x)
           ) {
             return
           }
 
-          setFinish({ file: fileFigure, column: columnFigure })
-        } else if (finish.file === fileFigure && finish.column === columnFigure) {
+          setFinish({ y: y, x: x })
+        } else if (finish.y === y && finish.x === x) {
           setFinish(undefined)
         } else {
           return
@@ -95,136 +101,136 @@ function App() {
       }
     }
 
-    setFigura(prev => prev.map((file, fileIndex) => file.map((col, colIndex) => fileIndex === fileFigure && colIndex === columnFigure ? { ...col, type: newFigure } : col)))
-  }, [figures, pointIsLimits, start, finish])
+    setMaze(prev => prev.map((row, rowIndex ) => row.map((col, colIndex) => rowIndex === y && colIndex === x ? { ...col, type: newFigure } : col)))
+  }, [maze, pointIsLimits, start, finish, pointIsInCorner])
 
-  const recorridoLaberinto = useCallback(async (laberinto: Figure[][], posicionActual: { y: number; x: number }, position: Position): Promise<'SHOE' | 'X'> => {
+  const walkMaze = useCallback(async (maze: Figure[][], posicionActual: { y: number; x: number }, position: Position): Promise<'SHOE' | 'X'> => {
     const { x, y } = posicionActual;
 
-    if (laberinto[y] && laberinto[y][x]) {
-      laberinto[y][x].type = 'PERSON'
-      laberinto[y][x].position = position
-      setFigura(laberinto.map(file => file.map(col => ({ ...col }))))
+    if (maze[y] && maze[y][x]) {
+      maze[y][x].type = 'PERSON'
+      maze[y][x].position = position
+      setMaze(maze.map(row => row.map(col => ({ ...col }))))
     }
 
     await Delay()
 
-    if (laberinto[y + 1] && laberinto[y + 1][x] && laberinto[y + 1][x].type === 'ROAD') {
+    if (maze[y + 1] && maze[y + 1][x] && maze[y + 1][x].type === 'ROAD') {
       // se puede avanzar hacia abajo
-      laberinto[y][x].type = 'SHOE'
+      maze[y][x].type = 'SHOE'
 
-      if (laberinto[y][x].position.includes('RIGHT')) {
-        laberinto[y][x].position = 'RIGHT-BOTTOM'
+      if (maze[y][x].position.includes('RIGHT')) {
+        maze[y][x].position = 'RIGHT-BOTTOM'
       } else {
-        laberinto[y][x].position = 'LEFT-BOTTOM'
+        maze[y][x].position = 'LEFT-BOTTOM'
       }
 
-      setFigura(laberinto.map(file => file.map(col => ({ ...col }))))
-      let marca = await recorridoLaberinto(laberinto, { x: x, y: y + 1 }, 'BOTTOM')
+      setMaze(maze.map(row => row.map(col => ({ ...col }))))
+      let marca = await walkMaze(maze, { x: x, y: y + 1 }, 'BOTTOM')
 
       if (marca === 'X') {
-        laberinto[y][x].type = 'PERSON'
+        maze[y][x].type = 'PERSON'
 
-        if(laberinto[y][x].position.includes('RIGHT')){
-          laberinto[y][x].position = 'LEFT-TOP'
+        if(maze[y][x].position.includes('RIGHT')){
+          maze[y][x].position = 'LEFT-TOP'
         }else {
-          laberinto[y][x].position = 'RIGHT-TOP'
+          maze[y][x].position = 'RIGHT-TOP'
         }
 
-        setFigura(laberinto.map(file => file.map(col => ({ ...col }))))
+        setMaze(maze.map(row => row.map(col => ({ ...col }))))
         await Delay()
       }
 
-      laberinto[y][x].type = marca
-      setFigura(laberinto.map(file => file.map(col => ({ ...col }))))
+      maze[y][x].type = marca
+      setMaze(maze.map(row => row.map(col => ({ ...col }))))
       if (marca === 'SHOE') return marca
     }
 
-    if (laberinto[y] && laberinto[y][x + 1] && laberinto[y][x + 1].type === 'ROAD') {
+    if (maze[y] && maze[y][x + 1] && maze[y][x + 1].type === 'ROAD') {
       // se puede avanzar hacia la derecha
-      laberinto[y][x].type = 'SHOE'
+      maze[y][x].type = 'SHOE'
 
-      laberinto[y][x].position = 'RIGHT'
+      maze[y][x].position = 'RIGHT'
 
-      setFigura(laberinto.map(file => file.map(col => ({ ...col }))))
-      let marca = await recorridoLaberinto(laberinto, { x: x + 1, y: y }, 'RIGHT')
+      setMaze(maze.map(row => row.map(col => ({ ...col }))))
+      let marca = await walkMaze(maze, { x: x + 1, y: y }, 'RIGHT')
 
       if (marca === 'X') {
-        laberinto[y][x].type = 'PERSON'
+        maze[y][x].type = 'PERSON'
 
-        laberinto[y][x].position = 'LEFT'
+        maze[y][x].position = 'LEFT'
  
-        setFigura(laberinto.map(file => file.map(col => ({ ...col }))))
+        setMaze(maze.map(row => row.map(col => ({ ...col }))))
         await Delay()
       }
 
-      laberinto[y][x].type = marca
-      setFigura(laberinto.map(file => file.map(col => ({ ...col }))))
+      maze[y][x].type = marca
+      setMaze(maze.map(row => row.map(col => ({ ...col }))))
       if (marca === 'SHOE') return marca
     }
 
-    if (laberinto[y] && laberinto[y][x - 1] && laberinto[y][x - 1].type === 'ROAD') {
+    if (maze[y] && maze[y][x - 1] && maze[y][x - 1].type === 'ROAD') {
       // se puede avanzar hacia la izquierda
-      laberinto[y][x].type = 'SHOE'
+      maze[y][x].type = 'SHOE'
 
-      laberinto[y][x].position = 'LEFT'
+      maze[y][x].position = 'LEFT'
 
-      setFigura(laberinto.map(file => file.map(col => ({ ...col }))))
-      let marca = await recorridoLaberinto(laberinto, { x: x - 1, y: y }, 'LEFT')
+      setMaze(maze.map(row => row.map(col => ({ ...col }))))
+      let marca = await walkMaze(maze, { x: x - 1, y: y }, 'LEFT')
       if (marca === 'X') {
-        laberinto[y][x].type = 'PERSON'
-        laberinto[y][x].position = 'RIGHT'
+        maze[y][x].type = 'PERSON'
+        maze[y][x].position = 'RIGHT'
 
-        setFigura(laberinto.map(file => file.map(col => ({ ...col }))))
+        setMaze(maze.map(row => row.map(col => ({ ...col }))))
         await Delay()
       }
-      laberinto[y][x].type = marca
-      setFigura(laberinto.map(file => file.map(col => ({ ...col }))))
+      maze[y][x].type = marca
+      setMaze(maze.map(row => row.map(col => ({ ...col }))))
       if (marca === 'SHOE') return marca
     }
 
-    if (laberinto[y - 1] && laberinto[y - 1][x] && laberinto[y - 1][x].type === 'ROAD') {
+    if (maze[y - 1] && maze[y - 1][x] && maze[y - 1][x].type === 'ROAD') {
       // se puede avanzar hacia arriba
-      laberinto[y][x].type = 'SHOE'
+      maze[y][x].type = 'SHOE'
 
-      if (laberinto[y][x].position.includes('RIGHT')) {
-        laberinto[y][x].position = 'LEFT-TOP'
+      if (maze[y][x].position.includes('RIGHT')) {
+        maze[y][x].position = 'LEFT-TOP'
       } else {
-        laberinto[y][x].position = 'RIGHT-TOP'
+        maze[y][x].position = 'RIGHT-TOP'
       }
 
-      setFigura(laberinto.map(file => file.map(col => ({ ...col }))))
-      let marca = await recorridoLaberinto(laberinto, { x: x, y: y - 1 }, 'TOP')
+      setMaze(maze.map(row => row.map(col => ({ ...col }))))
+      let marca = await walkMaze(maze, { x: x, y: y - 1 }, 'TOP')
       if (marca === 'X') {
 
-        laberinto[y][x].type = 'PERSON'
+        maze[y][x].type = 'PERSON'
 
-        if (laberinto[y][x].position.includes('RIGHT')) {
-          laberinto[y][x].position = 'RIGHT-BOTTOM'
+        if (maze[y][x].position.includes('RIGHT')) {
+          maze[y][x].position = 'RIGHT-BOTTOM'
         } else {
-          laberinto[y][x].position = 'LEFT-BOTTOM'
+          maze[y][x].position = 'LEFT-BOTTOM'
         }
 
-        setFigura(laberinto.map(file => file.map(col => ({ ...col }))))
+        setMaze(maze.map(row => row.map(col => ({ ...col }))))
         await Delay()
       }
-      laberinto[y][x].type = marca
-      setFigura(laberinto.map(file => file.map(col => ({ ...col }))))
+      maze[y][x].type = marca
+      setMaze(maze.map(row => row.map(col => ({ ...col }))))
       if (marca === 'SHOE') return marca
     }
 
-    if ((y === 0 || y === laberinto.length - 1) || (x === 0 || x === laberinto[0].length - 1)) {
-      if (laberinto[y][x]) {
-        laberinto[y][x].type = 'SHOE'
-        setFigura(laberinto.map(file => file.map(col => ({ ...col }))))
+    if ((y === 0 || y === maze.length - 1) || (x === 0 || x === maze[0].length - 1)) {
+      if (maze[y][x]) {
+        maze[y][x].type = 'SHOE'
+        setMaze(maze.map(row => row.map(col => ({ ...col }))))
       }
 
       return 'SHOE'
     }
 
-    if (laberinto[y] && laberinto[y][x]) {
-      laberinto[y][x].type = 'X'
-      setFigura(laberinto.map(file => file.map(col => ({ ...col }))))
+    if (maze[y] && maze[y][x]) {
+      maze[y][x].type = 'X'
+      setMaze(maze.map(row => row.map(col => ({ ...col }))))
     }
 
     return 'X'
@@ -237,21 +243,21 @@ function App() {
           if (!start) return
           setGameUsed(true)
           setIsPlaying(true)
-          await recorridoLaberinto(figures.map(file => file.map(col => ({ ...col }))), { y: start.file, x: start.column },
-            start.file === 0
+          await walkMaze(maze.map(row => row.map(col => ({ ...col }))), { y: start.y, x: start.x },
+            start.y === 0
               ? 'RIGHT-BOTTOM'
-              : start.file === figures.length - 1
+              : start.y === maze.length - 1
                 ? 'RIGHT-TOP'
-                : start.column === figures[0].length - 1
+                : start.x === maze[0].length - 1
                   ? 'LEFT'
                   : 'RIGHT'
           )
           setIsPlaying(false)
         }} className={`button ${!start || isPlaying || gameUsed ? 'cursor-disable ' : ''}`}>
-          Empezar
+          Start
         </button>
         <button disabled={isPlaying} className={`button ${isPlaying ? 'cursor-disable': ''}` } onClick={() => {
-          setFigura(initialState)
+          setMaze(initialState)
           setFinish(undefined)
           setStart(undefined)
           setGameUsed(false)
@@ -260,16 +266,16 @@ function App() {
       </div>
       <div className="labyrinth">
         {
-          figures.map((file, fileIndex) => {
+          maze.map((row, rowIndex) => {
             return (
-              <div className="line" key={fileIndex} >
-                {file.map((figure, index) => (
+              <div className="line" key={rowIndex} >
+                {row.map((figure, columIndex) => (
                   <Space
                     position={figure.position}
-                    key={`${fileIndex}-${index}`}
+                    key={`${rowIndex}-${columIndex}}`}
                     changeFigure={() => !isPlaying ? changeFigure({
-                      columnFigure: index,
-                      fileFigure: fileIndex,
+                      x: columIndex,
+                      y: rowIndex,
                       newFigure: figure.type === 'TREE' ? 'ROAD' : 'TREE'
                     }) : () => { return }}
                     type={figure.type} />

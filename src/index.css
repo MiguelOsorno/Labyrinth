@@ -61,6 +61,9 @@ code {
 .figure--color-green {
   color: #17a655;
 }
+.figure--color-white {
+  color: #F5F0F0;
+}
 .button {
   background-color: #41B883;
   color: white;
