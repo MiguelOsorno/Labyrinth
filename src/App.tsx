@@ -4,27 +4,29 @@ import { Space } from "./components/space/Space";
 import { Figure, FigureType, Position } from "./interfaces";
 import { Delay } from "./utils/delay";
 
+const initialState: Figure[][] = [
+  [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
+  [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
+  [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
+  [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
+  [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
+  [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
+  [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
+  [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
+  [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
+  [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
+  [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
+  [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT'}],
+]
 
 function App() {
 
-  const [figures, setFigura] = useState<Figure[][]>([
-    [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
-    [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
-    [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
-    [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
-    [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
-    [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
-    [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
-    [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
-    [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
-    [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
-    [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }],
-    [{ type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT' }, { type: 'TREE', position: 'RIGHT'}],
-  ])
+  const [figures, setFigura] = useState<Figure[][]>(initialState)
 
   const [start, setStart] = useState<{ file: number; column: number } | undefined>()
   const [finish, setFinish] = useState<{ file: number; column: number } | undefined>()
   const [isPlaying, setIsPlaying] = useState(false);
+  const [gameUsed, setGameUsed] = useState(false)
 
   const pointIsLimits = useCallback((file: number, column: number) => {
     return (file === 0 || file === figures.length - 1) || (column === 0 || column === figures[0].length - 1)
@@ -231,10 +233,11 @@ function App() {
   return (
     <div className="container">
       <div>
-        <button disabled={!start || isPlaying} onClick={() => {
+        <button disabled={!start || isPlaying || gameUsed} onClick={async() => {
           if (!start) return
+          setGameUsed(true)
           setIsPlaying(true)
-          recorridoLaberinto(figures.map(file => file.map(col => ({ ...col }))), { y: start.file, x: start.column },
+          await recorridoLaberinto(figures.map(file => file.map(col => ({ ...col }))), { y: start.file, x: start.column },
             start.file === 0
               ? 'RIGHT-BOTTOM'
               : start.file === figures.length - 1
@@ -243,9 +246,17 @@ function App() {
                   ? 'LEFT'
                   : 'RIGHT'
           )
-        }} className={`button ${!start ? 'cursor-disable ' : ''}`}>
+          setIsPlaying(false)
+        }} className={`button ${!start || isPlaying || gameUsed ? 'cursor-disable ' : ''}`}>
           Empezar
         </button>
+        <button disabled={isPlaying} className={`button ${isPlaying ? 'cursor-disable': ''}` } onClick={() => {
+          setFigura(initialState)
+          setFinish(undefined)
+          setStart(undefined)
+          setGameUsed(false)
+
+        }} >Reset</button>
       </div>
       <div className="labyrinth">
         {
